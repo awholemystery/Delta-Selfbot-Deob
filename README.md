@@ -1,2 +1,2 @@
 # Delta-Selfbot-Deob
-Discord Selfbot for be real hacker :hap:
+full skid
